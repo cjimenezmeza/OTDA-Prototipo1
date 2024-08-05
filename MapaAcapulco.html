@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Mapa Acapulco</title>
+    <style>
+                
+        #panelOpciones {
+            position: relative;
+            background: white;
+            padding: 10px;
+            border: 1px solid #999;
+            width: 20%;
+            padding-left: 2.5%;
+            padding-top: 5%;
+            font-size: 2em;
+        }
+
+        .opcion {
+            margin-bottom: 2%;
+            align-items: center;
+            align-self: auto;
+        }
+    </style>
+</head>
+<body> 
+    <!-- <h1 style="text-align: center;">Observatorio Turístico de Acapulco</h1> -->
+    
+    <!-- Widget tipos de cambio -->
+    <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget">
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+        {
+        "symbols": [
+        {
+            "proName": "FX_IDC:EURUSD",
+            "title": "EUR a USD"
+        },
+        {
+            "description": "MXN a USD",
+            "proName": "FX_IDC:MXNUSD"
+        },
+        {
+            "description": "MXN a EUR",
+            "proName": "FX_IDC:MXNEUR"
+        },
+        {
+            "description": "MXN a CNY",
+            "proName": "FX_IDC:MXNCNY"
+        }
+        ],
+        "showSymbolLogo": true,
+        "isTransparent": false,
+        "displayMode": "adaptive",
+        "colorTheme": "dark",
+        "locale": "es"
+        }
+        </script>
+    </div>
+
+    <!-- Widget del clima -->
+    <script>
+        (function(d, s, id) {
+            if (d.getElementById(id)) {
+                if (window.__TOMORROW__) {
+                    window.__TOMORROW__.renderWidget();
+                }
+                return;
+            }
+            const fjs = d.getElementsByTagName(s)[0];
+            const js = d.createElement(s);
+            js.id = id;
+            js.src = "https://www.tomorrow.io/v1/widget/sdk/sdk.bundle.min.js";
+
+            fjs.parentNode.insertBefore(js, fjs);
+        })(document, 'script', 'tomorrow-sdk');
+        </script>
+
+    <div class="tomorrow"
+        data-location-id="068039"
+        data-language="ES"
+        data-unit-system="METRIC"
+        data-skin="light"
+        data-widget-type="upcoming"
+        style="position:relative;">              
+    </div>
+    
+    <div style="display: flex; width: 100%; height: 100%; position: relative;">
+        <!-- Panel de opciones -->
+        <div id="panelOpciones">
+            <h3>Controles</h3>
+            <div class="opcion"><input type="checkbox" id="opcion1" name="opcion1"><label for="opcion1">Vuelos</label></div>
+            <div class="opcion"><input type="checkbox" id="opcion2" name="opcion2"><label for="opcion2">Autobuses</label></div>
+            <div class="opcion"><input type="checkbox" id="opcion3" name="opcion3"><label for="opcion3">Cruceros</label></div>
+            <div class="opcion"><input type="checkbox" id="opcion4" name="opcion4"><label for="opcion4">Tráfico</label></div>
+        <!-- Agregar más opciones según se necesite -->
+        </div>
+            
+        <!-- Aquí agregar JavaScript para manejar la lógica de mostrar/ocultar opciones -->
+
+        <!-- Widget del mapa -->
+        <iframe width="80%" height="500em" src="https://www.openstreetmap.org/export/embed.html?bbox=-99.94065284729005%2C16.808266937536224%2C-99.83439445495607%2C16.86536218187114&amp;layer=mapnik"></iframe>
+        <br/>
+    </div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="styles.css">
+<title>Bibliotecas</title>
+<style>
+     /* Estilos generales */
+     body {
+        
+        line-height: 1;
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+    }
+
+      
+    /* Estilos para el iframe */
+    iframe {
+      display: block;
+      margin: auto;
+      width: 80%;
+      height: 500px; /* Ajusta la altura según necesidades */
+      border: 2px solid #000000; /* Borde sólido negro del iframe */
+      }
+
+    /* Estilos para la sección de enlaces externos */
+    #enlacesExternos {
+    margin-top: 20px;
+    }
+
+    #enlacesExternos h2 {
+    margin-bottom: 10px;
+    }
+
+    #enlacesExternos ul {
+    list-style-type: none; /* Elimina los puntos de la lista */
+    padding: 0;
+    }
+
+    #enlacesExternos li a {
+    text-decoration: none; /* Elimina el subrayado de los enlaces */
+    color: #007bff; /* Color azul para los enlaces */
+    }
+
+    #enlacesExternos li a:hover {
+    color: #0056b3; /* Color azul más oscuro al pasar el mouse sobre los enlaces */
+    }
+
+    .volver-inicio {
+    display: inline-block; /* O block, dependiendo de cómo se quiera mostrar */
+    margin-top: 5px; /* Ajusta el margen superior según sea necesario */
+    padding: 5px; /* Añade algo de espaciado interno para hacer el enlace más grande y fácil de clickear */
+    background-color: #333; /* El color de fondo del enlace */
+    color: #fff; /* El color del texto del enlace */
+    text-decoration: none; /* Elimina el subrayado del texto del enlace */
+    border-radius: 5px; /* Opcional: redondea las esquinas del enlace */
+    }
+
+    .volver-inicio:hover {
+      background-color: #555; /* Cambia el color de fondo al pasar el mouse sobre el enlace */
+    }
+
+
+  
+</style>
+<script>
+  // Función para cambiar la biblioteca en el iframe
+  function cambiarBiblioteca() {
+    var bibliotecaSeleccionada = document.getElementById('menuBibliotecas').value;
+    document.getElementById('iframeBiblioteca').src = bibliotecaSeleccionada;
+  }
+</script>
+</head>
+<body>
+  <a href="index.html" class="volver-inicio">Inicio</a>
+ 
+  <h3>Bibliotecas Especializadas</h3>
+  <!-- Menú desplegable para seleccionar la biblioteca -->
+  <select id="menuBibliotecas" onchange="cambiarBiblioteca()">
+    <option value="https://www.aiest.org/">AIEST - Worldwide network of tourism experts</option>
+    <option value="https://www.tesisenred.net/">TDX Tesis Doctorales en Xarxa</option>
+    <option value="https://dialnet.unirioja.es/servlet/revista?codigo=13934">Estudios y perspectivas en Turismo (Dialnet)</option>
+    <option value="https://estudiosturisticos.tourspain.es/index.php/ET/index">Estudios Turísticos</option>
+    <option value="https://www.tourisme-espaces.com/doc/tourisme-loisirs-culture.html">ESPACES Tourisme et loisirs</option>
+        
+    <!-- Se pueden añadir más opciones según las bibliotecas que se desee incluir -->
+  </select>
+
+
+  <!-- iframe para cargar la página web de la biblioteca seleccionada -->
+  <iframe id="iframeBiblioteca" src="https://www.aiest.org/" title="Biblioteca Integrada">
+    <p>Tu navegador no soporta iframes.</p>
+  </iframe>
+
+  <!-- Sección para enlaces externos -->
+  <div id="enlacesExternos">
+      <h3>Enlaces Externos</h3>
+      <ul>
+        <li><a href="https://www.cabidigitallibrary.org/journal/tcs" target="_blank">CABI Digital Library</a></li>
+        <li><a href="https://rperiplo.uaemex.mx/" target="_blank">El Periplo Sustentable</a></li>
+        <li><a href="https://www.cepal.org/es" target="_blank">Comisión Económica para América Latina (CEPAL)</a></li>
+        <li><a href="https://ttra.com/" target="_blank">Travel and Tourism Research Association</a></li>
+        <li><a href="https://www.datatur.sectur.gob.mx/SitePages/CompendioEstadistico.aspx" target="_blank">Compendio Estadístico del Turismo en México</a></li>
+        <li><a href="https://www.datatur.sectur.gob.mx/SitePages/Inicio.aspx" target="_blank">Datatur</a></li>
+        <li><a href="https://ojsull.webs.ull.es/index.php/Revista" target="_blank">PASOS Revista de Turismo y Patrimonio Cultural</a>
+        <!-- Se pueden añadir más enlaces según las bibliotecas que se desee incluir -->
+      </ul>
+  </div>
+
+</body>
+</html>

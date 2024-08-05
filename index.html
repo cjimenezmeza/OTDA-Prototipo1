@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>ObservaTur Acapulco</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        
+        /* Contenedor principal */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Altura total de la ventana 100*/
+        }
+
+        /* Imagen fija */
+        .main-image {
+            flex: 0 0 80%; /* 80% de la altura de la pantalla */
+            width: 100%;
+            object-fit: cover; /* Ajustar imagen para cubrir el contenedor */
+        }
+
+        
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="navbar-header">Observatorio Turístico de Acapulco</div>
+        <a href="MapaAcapulco.html">Mapa Interactivo</a>
+        <a href="camaras.html">Acapulco On-live</a>
+        <a href="Indicadores2.html">Indicadores</a>
+        <a href="CentroDoc.html">Centro Documental</a>
+        <a href="Biblioteca2.html">Bibliotecas Especializadas</a>
+    </div>
+
+    <!-- Contenedor principal -->
+    <div class="main-container">
+        <!-- Imagen fija -->
+        <img src="PUESTA_SOL.jpeg" class="main-image" alt="Imagen de la puesta de sol">
+
+        <!-- Contenedores de visión y misión -->
+        <div class="vision-mision-container">
+            <div class="vision">
+                <h6>Visión</h6>
+                <p>
+                    Ser líder en la investigación científica y operativa en turismo, reconocido por la alta 
+                    calidad de su producción científica. Ser referente esencial para las instituciones
+                    públicas y privadas del sector turístico, al proporcionar el conocimiento necesario para la toma
+                    de decisiones adecuadas y oportunas. Promover el desarrollo turístico local y regional, 
+                    sostenible y competitivo.
+                </p>
+            </div>
+            <div class="mision">
+                <h6>Misión</h6>
+                <p>
+                    Generar información precisa, fiable y constante en el tiempo y espacio, facilitando la toma de 
+                    decisiones adecuadas y la cooperación entre organismos e  instituciones  públicas  y  privadas 
+                    interesadas en el turismo.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS y dependencias -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

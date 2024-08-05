@@ -1,0 +1,73 @@
+/* Archivo: styles.css */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cutive&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Estilos básicos para la barra de navegación */
+.navbar {
+    font-family: Roboto, sans-serif;
+    overflow: hidden;
+    background-color:#27013b;
+    position: relative; 
+}
+
+.navbar-header {
+    font-family: Cutive, serif;
+    float: left;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 20px;
+    color: #FFFAFA;
+}
+
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #FFFAFA;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Estilos para los contenedores de visión y misión */
+.vision-mision-container {
+    flex: 0 0 20%; /* 20% de la altura de la pantalla */
+    display: flex;
+    background-color: rgba(242, 242, 242, 0.8); /* Transparente */
+    color: #333;
+    padding: 10px;
+    text-align: justify;
+    
+}
+
+.vision, .mision {
+    flex: 1;
+    margin: 10px;
+    h6 {
+        font-weight: bold;
+        font-family: 'Open Sans', sans-serif;
+    }
+    p {
+        font-family: 'Lato', sans-serif;
+    }
+    
+}
+
+h1, h2 {
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+
+
