@@ -3,127 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
     <title>Centro Documental del Observatorio Turístico</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <style>
-        
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-        .sidebar {
-            width: 25%;
-            padding: 10px;
-            border-right: 1px solid #5a045a;
-            overflow-y: auto;
-        }
-        .main-content {
-            width: 75%;
-            padding: 10px;
-            overflow-y: auto;
-        }
-        .menu {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #f0f0f0;
-            border-bottom: 1px solid #ccc;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .menu a {
-            text-decoration: none;
-            color: #333;
-            padding: 10px;
-        }
-        .menu a:hover {
-            background-color: #ddd;
-        }
-        .print-icon {
-            cursor: pointer;
-        }
-        .section {
-            margin-bottom: 20px;
-        }
-        #rss-feed {
-            max-height: calc(100vh - 140px);
-            overflow-y: auto;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="menu">
-        <a href="#cargar">Cargar Tesis</a>
-        <a href="#visualizar">Visualizar Tesis</a>
-        <a href="#busqueda">Búsqueda Avanzada</a>
-        <img src="print-icon.png" alt="Imprimir" class="print-icon" onclick="window.print()">
-    </div>
-    <div class="container">
-        <div class="sidebar">
-            <h2>Noticias del Turismo</h2>
-            <ul id="rss-feed" class="list-group"></ul>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Centro Documental</a>
+            <nav>
+                <button class="nav-button" data-section="cargar">Cargar Tesis</button>
+                <button class="nav-button" data-section="visualizar">Visualizar Tesis</button>
+                <button class="nav-button" data-section="busqueda">Búsqueda Avanzada</button>
+                <button id="print-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-printer"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+                    Imprimir
+                </button>
+            </nav>
         </div>
-        <div class="main-content">
-            <div id="cargar" class="section">
-                <h2>Cargar Tesis</h2>
-                <p>Formulario para cargar tesis...</p>
-            </div>
-            <div id="visualizar" class="section">
-                <h2>Visualizar Tesis</h2>
-                <p>Opciones para visualizar tesis...</p>
-            </div>
-            <div id="busqueda" class="section">
-                <h2>Búsqueda Avanzada</h2>
-                <p>Herramienta de búsqueda avanzada...</p>
-            </div>
-        </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script>
-        function translateText(text, callback) {
-            $.ajax({
-                url: 'https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=es&dt=t&q=' + encodeURIComponent(text),
-                method: 'GET',
-                success: function(data) {
-                    callback(data[0][0][0]);
-                }
-            });
-        }
+    </header>
 
-        $(document).ready(function() {
-            function loadRSS() {
-                $.ajax({
-                    url: 'https://api.rss2json.com/v1/api.json?rss_url=https://news.google.com/rss/search?q=Tourism&hl=es&gl=ES&ceid=ES:es',
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function(data) {
-                        var $rssFeed = $('#rss-feed');
-                        $rssFeed.empty();
-                        data.items.forEach(function(item) {
-                            var image = item.enclosure ? '<img src="' + item.enclosure.link + '" class="img-fluid" alt="Imagen de la noticia">' : '';
-                            translateText(item.title, function(translatedTitle) {
-                                translateText(item.description, function(translatedDescription) {
-                                    var listItem = '<li class="list-group-item">' +
-                                                    image +
-                                                    '<h5><a href="' + item.link + '" target="_blank">' + translatedTitle + '</a></h5>' +
-                                                    '<p>' + translatedDescription + '</p>' +
-                                                    '</li>';
-                                    $rssFeed.append(listItem);
-                                });
-                            });
-                        });
-                    },
-                    error: function() {
-                        $('#rss-feed').append('<li class="list-group-item">No se pudieron cargar las noticias.</li>');
-                    }
-                });
-            }
-            loadRSS();
-            setInterval(loadRSS, 300000);
-        });
-    </script>
+    <main class="container">
+        <section id="cargar" class="section active">
+            <h2>Cargar Tesis</h2>
+            <form id="cargar-form" action="procesar.php" method="POST" enctype="multipart/form-data">
+                <div>
+                    <label for="titulo">Título de la Tesis</label>
+                    <input type="text" id="titulo" name="titulo" placeholder="Ingrese el título de la tesis" required>
+                </div>
+                <div>
+                    <label for="autor">Autor</label>
+                    <input type="text" id="autor" name="autor" placeholder="Nombre del autor" required>
+                </div>
+                <div>
+                    <label for="resumen">Resumen</label>
+                    <textarea id="resumen" name="resumen" placeholder="Escriba un breve resumen de la tesis" required></textarea>
+                </div>
+                <div>
+                    <label for="archivo">Archivo PDF</label>
+                    <input type="file" id="archivo" name="archivo" accept=".pdf" required>
+                </div>
+                <button type="submit">Cargar Tesis</button>
+            </form>
+        </section>
+
+        <section id="visualizar" class="section">
+            <h2>Visualizar Tesis</h2>
+            <p>Aquí se mostrarán las tesis cargadas con opciones para visualizarlas.</p>
+            <!-- Aquí se cargarán dinámicamente las tesis -->
+            <div id="tesis-list"></div>
+        </section>
+
+        <section id="busqueda" class="section">
+            <h2>Búsqueda Avanzada</h2>
+            <form id="busqueda-form">
+                <div>
+                    <label for="busqueda">Palabras clave</label>
+                    <input type="text" id="busqueda" name="busqueda" placeholder="Ingrese palabras clave para buscar">
+                </div>
+                <div>
+                    <label for="categoria">Categoría</label>
+                    <select id="categoria" name="categoria">
+                        <option value="">Todas las categorías</option>
+                        <option value="turismo-sostenible">Turismo Sostenible</option>
+                        <option value="marketing-turistico">Marketing Turístico</option>
+                        <option value="gestion-hotelera">Gestión Hotelera</option>
+                    </select>
+                </div>
+                <button type="submit">Buscar</button>
+            </form>
+            <div id="resultados-busqueda"></div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Acerca de</a>
+                <a href="#">Contacto</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos de uso</a>
+            </div>
+            <div class="copyright">
+                © 2023 Centro Documental del Observatorio Turístico. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>

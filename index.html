@@ -3,73 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Cutive&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <title>ObservaTur Acapulco</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-    <style>
-        
-        /* Contenedor principal */
-        .main-container {
-            display: flex;
-            flex-direction: column;
-            height: 100vh; /* Altura total de la ventana 100*/
-        }
-
-        /* Imagen fija */
-        .main-image {
-            flex: 0 0 80%; /* 80% de la altura de la pantalla */
-            width: 100%;
-            object-fit: cover; /* Ajustar imagen para cubrir el contenedor */
-        }
-
-        
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles1.css"> <!-- Referencia al archivo externo de CSS -->
+    <title>Observatorio Turístico Acapulco</title>
+    
+    
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="navbar-header">Observatorio Turístico de Acapulco</div>
-        <a href="MapaAcapulco.html">Mapa Interactivo</a>
-        <a href="camaras.html">Acapulco On-live</a>
-        <a href="Indicadores2.html">Indicadores</a>
-        <a href="CentroDoc.html">Centro Documental</a>
-        <a href="Biblioteca2.html">Bibliotecas Especializadas</a>
-    </div>
-
-    <!-- Contenedor principal -->
-    <div class="main-container">
-        <!-- Imagen fija -->
-        <img src="PUESTA_SOL.jpeg" class="main-image" alt="Imagen de la puesta de sol">
-
-        <!-- Contenedores de visión y misión -->
-        <div class="vision-mision-container">
-            <div class="vision">
-                <h6>Visión</h6>
-                <p>
-                    Ser líder en la investigación científica y operativa en turismo, reconocido por la alta 
-                    calidad de su producción científica. Ser referente esencial para las instituciones
-                    públicas y privadas del sector turístico, al proporcionar el conocimiento necesario para la toma
-                    de decisiones adecuadas y oportunas. Promover el desarrollo turístico local y regional, 
-                    sostenible y competitivo.
-                </p>
-            </div>
-            <div class="mision">
-                <h6>Misión</h6>
-                <p>
-                    Generar información precisa, fiable y constante en el tiempo y espacio, facilitando la toma de 
-                    decisiones adecuadas y la cooperación entre organismos e  instituciones  públicas  y  privadas 
-                    interesadas en el turismo.
-                </p>
-            </div>
+    <div class="top-bar">
+        <div class="container">
+            <a href="#" class="logo">Observatorio Turístico de Acapulco</a>
+            <nav>
+                <a href="#">Inicio</a>
+                <a href="#" id="mapas-link">Mapas Interactivos</a>
+                <a href="camaras1.html">Acapulco On-Live</a>
+                <a href="Indicadores1.html">Indicadores</a>
+                <a href="CentroDoc.html">Centro Documental</a>
+                <a href="Biblioteca2.html">Bibliotecas</a>
+            </nav>
         </div>
     </div>
 
-    <!-- Bootstrap JS y dependencias -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Nueva barra de navegación secundaria para mapas interactivos -->
+    <div class="secondary-nav" id="mapas-nav">
+        <div class="container">
+            <a href="AVIONES2.html">Mapa de Vuelos</a>
+            <a href="Barcos.html">Mapa de Embarcaciones</a>
+            <a href="#">Opción 3</a>
+            <a href="#">Opción 4</a>
+        </div>
+    </div>
+    
+    <main class="container">
+        <div class="welcome">
+            <h1>Bienvenidos al Observatorio Turístico de Acapulco</h1>
+            <p>Su fuente confiable de información y análisis sobre el turismo en nuestra hermosa ciudad.</p>
+        </div>
+        
+        <div class="search-box">
+            <input type="text" placeholder="Buscar información turística...">
+            <button type="submit" aria-label="Buscar">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Widget del clima, proporcionado por Tomorrow.IO -->
+        <div class="weather-section">
+            <h2>Clima en Acapulco</h2>
+            <div class="weather-widget">
+                <div class="tomorrow" 
+                     data-location-id="068039"
+                     data-language="ES"
+                     data-unit-system="METRIC"
+                     data-skin="light"
+                     data-widget-type="aqiMini"
+                     style="padding-bottom:22px;position:relative;">
+                    <a href="https://www.tomorrow.io/weather-api/"
+                       rel="nofollow noopener noreferrer"
+                       target="_blank"
+                       style="position: absolute; bottom: 0; transform: translateX(-50%); left: 50%;">
+                        <img alt="Powered by the Tomorrow.io Weather API"
+                             src="https://weather-website-client.tomorrow.io/img/powered-by.svg"
+                             width="250"
+                             height="18" />
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        
+        <div class="grid">
+            
+            
+            <!-- Sección de indicadores clave, contiene widget del tipo de cambio -->
+            <!-- Falta actualización de los indicadores, estos son valores fijos -->
+            <div class="sidebar">
+                <div class="indicators">
+                    <h2>Indicadores clave</h2>
+                    <ul>
+                        <li>Ocupación hotelera: 75%</li>
+                        <li>Llegada de turistas: 1.2M</li>
+                        <li>Derrama económica: $500M MXN</li>
+                        <li>Satisfacción del visitante: 4.5/5</li>
+                    </ul>
+
+                    <!-- Widget del tipo de cambio, por Trading View -->
+                    <div class="exchange-rate-card">
+                        <h3>Tipos de Cambio</h3>
+                        <div class="exchange-rate-widget">
+                            <div class="tradingview-widget-container">
+                                <div class="tradingview-widget-container__widget"></div>
+                                <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+                                {
+                                "symbols": [
+                                {
+                                    "proName": "FX_IDC:EURUSD",
+                                    "title": "EUR a USD"
+                                },
+                                {
+                                    "description": "MXN a USD",
+                                    "proName": "FX_IDC:MXNUSD"
+                                },
+                                {
+                                    "description": "MXN a EUR",
+                                    "proName": "FX_IDC:MXNEUR"
+                                },
+                                {
+                                    "description": "MXN a CNY",
+                                    "proName": "FX_IDC:MXNCNY"
+                                }
+                                ],
+                                "showSymbolLogo": true,
+                                "colorTheme": "light",
+                                "isTransparent": true,
+                                "displayMode": "adaptive",
+                                "locale": "es"
+                                }
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Noticias -->
+                <div class="news">
+                    <h2>Acapulco en las Noticias</h2>
+                    <div id="news-container">
+                        <!-- Noticias del mundo (lado izquierdo) -->
+                        <div class="news-column world-news">
+                            <h3>Internacional</h3>
+                            <div id="world-news-container">
+                                <div class="loading-spinner"></div>
+                            </div>
+                        </div>
+                
+                        <!-- Noticias locales (lado derecho) -->
+                        <div class="news-column local-news">
+                            <h3>Local</h3>
+                            <div id="local-news-container">
+                                <div class="loading-spinner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                               
+            </div>
+        </div>
+    </main>
+    
+    <!-- Sección Misión y Visión -->
+    <div class="mission-vision">
+        <h2>Misión y Visión</h2>
+        <h3>Misión</h3>
+        <p>Generar información precisa, fiable y constante en el tiempo y espacio, facilitando la toma de 
+            decisiones adecuadas y la cooperación entre organismos e  instituciones  públicas  y  privadas 
+            interesadas en el turismo.
+        </p>
+        
+        <h3>Visión</h3>
+        <p>Ser líder en la investigación científica y operativa en turismo, reconocido por la alta 
+            calidad de su producción científica. Ser referente esencial para las instituciones
+            públicas y privadas del sector turístico, al proporcionar el conocimiento necesario para la toma
+            de decisiones adecuadas y oportunas. Promover el desarrollo turístico local y regional, 
+            sostenible y competitivo.
+        </p>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-nav">
+                <a href="#">Acerca de</a>
+                <a href="#">Contacto</a>
+                <a href="#">Política de privacidad</a>
+                <a href="#">Términos de uso</a>
+            </div>
+            <div>
+                © 2023 Observatorio Turístico de Acapulco. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+<!-- Enlace al archivo JavaScript externo -->
+<script src="scripts.js"></script>
 </body>
 </html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Acapulco On-live</title>
+    <style>
+        :root {
+            --primary-dark: #01163B;
+            --primary-light: #003C70;
+            --secondary-dark: #DB021E;
+            --secondary-light: #FF0102;
+            --gray-darkest: #121212;
+            --gray-dark: #272727;
+            --gray-light: #C5C5CD;
+            --gray-lightest: #FFFAFA;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--gray-lightest);
+            color: var(--gray-dark);
+            line-height: 1.5;
+        }
+        
+        .top-bar {
+            background-color: var(--primary-dark);
+            border-bottom: 3px solid var(--secondary-light);
+            padding: 12px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .container {
+            max-width: 1264px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        
+        .top-bar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-lightest);
+            text-decoration: none;
+        }
+        
+        nav {
+            display: flex;
+        }
+        
+        nav a {
+            color: var(--gray-lightest);
+            text-decoration: none;
+            padding: 8px 12px;
+            margin-left: 4px;
+            border-radius: 3px;
+            transition: background-color 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--primary-light);
+        }
+        
+        main {
+            margin-top: 80px;
+        }
+        
+        .iframe-container {
+            position: relative;
+            overflow: hidden;
+            padding-top: 28.25%;
+            width: 50%;
+            float: left;
+            margin-bottom: 20px;
+        }
+        
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .fallback-image {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            .top-bar .container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            nav {
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+            
+            nav a {
+                margin-bottom: 5px;
+            }
+            
+            .iframe-container {
+                width: 100%;
+                padding-top: 56.25%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <a href="#" class="logo">Acapulco On-live</a>
+            <nav>
+                <a href="index.html">Inicio</a>
+                <a href="https://www.webcamsdemexico.com">Webcams de México</a>
+            </nav>
+        </div>
+    </div>
+
+    <main class="container">
+        <div class="iframe-container">
+            <iframe width="703" height="395" src="https://www.youtube.com/embed/zFK-dXeTEDo" 
+                title="Acapulco, Guerrero En Vivo | Vista Panorámica de la Bahía de Santa Lucía" 
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; 
+                encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
+            <img src="IMG_20211003_181436 BAHIA.jpg" class="fallback-image" alt="Cámara no disponible">
+        </div>
+
+        <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/9S82elnElxQ?si=f3_LCoErxuZC0I10" 
+                title="Playa el Morro" allowfullscreen>
+            </iframe>
+            <img src="FotoPlaya.png" class="fallback-image" alt="Cámara no disponible">
+        </div>
+
+        
+
+        <div class="iframe-container">
+            <iframe width="703" height="395" src="https://www.youtube.com/embed/F7mZjlztxs0" 
+                title="Acapulco, Guerrero En Vivo | Vista panorámica de la Marina" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
+                picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Esta cámara está temporalmente fuera de servicio. 
+        <div class="iframe-container">
+            <iframe src="https://www.youtube.com/embed/sTY9aoNKIM0?autoplay=1&showinfo=0&rel=0&modestbranding=0&color=white&disablekb=1" 
+                title="Pie de la Cuesta" allowfullscreen>
+            </iframe>
+            <img src="IMG_20211108_073548 TLACO.jpg" class="fallback-image" alt="Cámara no disponible">
+        </div>
+        -->
+    </main>
+
+    <script>
+        document.querySelectorAll('iframe').forEach(iframe => {
+            iframe.onerror = function() {
+                this.style.display = 'none';
+                this.nextElementSibling.style.display = 'block';
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Vuelos y Embarcaciones en México</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #leafletMap, #vesselMap {
+            height: 600px;
+            width: 100%;
+        }
+        #vesselMap {
+            display: none; /* Embarcaciones oculto por defecto */
+        }
+        #controls {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="controls">
+    <label><input type="checkbox" id="flightsCheckbox" checked> Mostrar Vuelos</label>
+    <label><input type="checkbox" id="cruisesCheckbox"> Mostrar Embarcaciones</label>
+</div>
+<div id="leafletMap"></div>
+<div id="vesselMap"></div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    // Inicializa el mapa de Leaflet para vuelos
+    var map = L.map('leafletMap').setView([23.6345, -102.5528], 5);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    var flightsLayer = L.layerGroup().addTo(map);
+
+    // Icono personalizado para vuelos
+    var flightIcon = L.icon({
+        iconUrl: 'avion1.png',
+        iconSize: [38, 38],
+        iconAnchor: [22, 22],
+        popupAnchor: [-3, -3],
+    });
+
+    // Función para obtener y mostrar datos de vuelos
+    function fetchFlights() {
+        fetch('https://opensky-network.org/api/states/all')
+            .then(response => response.json())
+            .then(data => {
+                data.states.forEach(state => {
+                    var lat = state[6];
+                    var lon = state[5];
+                    var country = state[2];
+                    var callsign = state[1] || "N/A";
+                    if (lat && lon && country === 'Mexico') {
+                        var marker = L.marker([lat, lon], { icon: flightIcon })
+                            .bindPopup(`
+                                <strong>Vuelo a México</strong><br>
+                                <strong>Origen:</strong> ${country}<br>
+                                <strong>Destino:</strong> México<br>
+                                <strong>Aerolínea (Callsign):</strong> ${callsign}<br>
+                                <strong>Latitud:</strong> ${lat}<br>
+                                <strong>Longitud:</strong> ${lon}<br>
+                            `);
+                        flightsLayer.addLayer(marker);
+                    }
+                });
+            })
+            .catch(error => console.error('Error al obtener datos de vuelos:', error));
+    }
+
+    // Cargar datos de vuelos inicialmente
+    fetchFlights();
+
+    // Control de visibilidad para vuelos
+    document.getElementById('flightsCheckbox').addEventListener('change', function (e) {
+        if (e.target.checked) {
+            map.addLayer(flightsLayer);
+            document.getElementById('leafletMap').style.display = 'block';
+            document.getElementById('vesselMap').style.display = 'none';
+        } else {
+            map.removeLayer(flightsLayer);
+        }
+    });
+
+    // Control de visibilidad para embarcaciones (mostrando/ocultando el mapa embebido)
+    document.getElementById('cruisesCheckbox').addEventListener('change', function (e) {
+        if (e.target.checked) {
+            document.getElementById('vesselMap').style.display = 'block';
+            document.getElementById('leafletMap').style.display = 'none';
+        } else {
+            document.getElementById('vesselMap').style.display = 'none';
+            document.getElementById('leafletMap').style.display = 'block';
+        }
+    });
+
+</script>
+
+<script type="text/javascript">
+    // Apariencia del mapa embebido de Vessel Finder
+    var width = "100%";         // ancho en porcentaje
+    var height = "600";         // altura en píxeles
+    var latitude = "23.6345";   // latitud centrada en México (decimal degrees)
+    var longitude = "-102.5528";// longitud centrada en México (decimal degrees)
+    var zoom = "5";             // zoom inicial (entre 3 y 18)
+</script>
+<script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
+
+</body>
+</html>
