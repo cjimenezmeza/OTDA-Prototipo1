@@ -1,0 +1,118 @@
+:root {
+    --primary-dark: #01163B;
+    --primary-light: #003C70;
+    --secondary-dark: #DB021E;
+    --secondary-light: #FF0102;
+    --gray-darkest: #121212;
+    --gray-dark: #272727;
+    --gray-light: #C5C5CD;
+    --gray-lightest: #FFFAFA;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--gray-lightest);
+    color: var(--gray-dark);
+    line-height: 1.5;
+}
+
+.top-bar {
+    background-color: var(--primary-dark);
+    border-bottom: 3px solid var(--secondary-light);
+    padding: 12px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1264px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.top-bar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: 'Cutive', serif; /* Cambiar la fuente a Cutive */
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gray-lightest);
+    text-decoration: none;
+}
+
+nav {
+    display: flex;
+}
+
+nav a {
+    color: var(--gray-lightest);
+    text-decoration: none;
+    padding: 8px 12px;
+    margin-left: 4px;
+    border-radius: 3px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--primary-light);
+}
+
+main {
+    margin-top: 80px;
+}
+
+.iframe-container {
+    position: relative;
+    overflow: hidden;
+    padding-top: 28.25%;
+    width: 50%;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 5px;
+}
+
+.fallback-image {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .top-bar .container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    nav {
+        margin-top: 10px;
+        flex-wrap: wrap;
+    }
+    
+    nav a {
+        margin-bottom: 5px;
+    }
+    
+    .iframe-container {
+        width: 100%;
+        padding-top: 56.25%;
+    }
+}

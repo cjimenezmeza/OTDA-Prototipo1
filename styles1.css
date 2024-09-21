@@ -37,10 +37,12 @@ body {
 }
 
 .logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--gray-lightest);
+    font-family: 'Cutive', serif; /* Cambiar la fuente a Cutive */
+    font-size: 24px;              /* Ajustar el tamaño de la fuente a 16px */
+    font-weight: 700;             /* Mantener el peso en negrita */
+    color: var(--gray-lightest);  /* Mantener el color del texto */
     text-decoration: none;
+    
 }
 
 nav {
@@ -280,7 +282,44 @@ margin: 20px auto;
 
 /* Ajustes en la sección de misión y visión */
 .mission-vision {
-    margin-bottom: 24px; /* Añadido margen inferior */
+    background-color: var(--gray-lightest);
+    border: 1px solid var(--gray-light);
+    border-radius: 5px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between; /* Asegura que Misión y Visión estén lado a lado */
+    gap: 24px; /* Espacio entre las dos columnas */
+}
+
+/* Ajustar títulos y contenido de Misión y Visión */
+.mission-vision h2 {
+    font-size: 22px;
+    margin-top: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--secondary-light);
+    color: var(--primary-dark);
+}
+
+.mission-vision p {
+    font-size: 16px;
+    color: var(--gray-dark);
+}
+
+/* Asegurar que las columnas estén en fila en pantallas medianas y grandes */
+@media (min-width: 768px) {
+    .mission-vision {
+        flex-direction: row; /* Poner las columnas en fila horizontal */
+    }
+}
+
+/* Ajuste de columnas en pantallas pequeñas */
+@media (max-width: 767px) {
+    .mission-vision .row {
+        flex-direction: column;
+    }
 }
 
 /* Modificación de la sección de indicadores y noticias */

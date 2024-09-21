@@ -38,7 +38,80 @@ function extractImageFromDescription(description) {
     return img ? img.src : null;
 }
 
-function fetchRSSFeed() {
+// Mantén las funciones existentes como getRandomStockImage()
+
+// Reemplaza la función fetchRSSFeed con esta nueva función
+function fetchNews() {
+    const worldNewsContainer = document.getElementById('world-news-container');
+    const localNewsContainer = document.getElementById('local-news-container');
+    
+    worldNewsContainer.innerHTML = '<div class="loading-spinner"></div>';
+    localNewsContainer.innerHTML = '<div class="loading-spinner"></div>';
+
+    // Clave API real de Gnews
+    const apiKey = f71459922cd53bde9dc001e195fe54ec;
+    const worldNewsUrl = `https://gnews.io/api/v4/search?q=turismo&lang=es&country=mx&max=1&apikey=${apiKey}`;
+    const localNewsUrl = `https://gnews.io/api/v4/search?q=turismo%20Acapulco&lang=es&country=mx&max=1&apikey=${apiKey}`;
+
+    Promise.all([
+        fetch(worldNewsUrl).then(response => response.json()),
+        fetch(localNewsUrl).then(response => response.json())
+    ])
+    .then(([worldData, localData]) => {
+        worldNewsContainer.innerHTML = '';
+        localNewsContainer.innerHTML = '';
+
+        if (worldData.articles && worldData.articles.length > 0) {
+            worldNewsContainer.appendChild(createNewsItem(worldData.articles[0]));
+        }
+
+        if (localData.articles && localData.articles.length > 0) {
+            localNewsContainer.appendChild(createNewsItem(localData.articles[0]));
+        }
+    })
+    .catch(error => {
+        worldNewsContainer.innerHTML = 'Error al cargar las noticias del mundo.';
+        localNewsContainer.innerHTML = 'Error al cargar las noticias locales.';
+        console.error('Error:', error);
+    });
+}
+
+function createNewsItem(article) {
+    const newsItem = document.createElement('div');
+    newsItem.className = 'news-item';
+
+    let imageUrl = article.image || getRandomStockImage();
+    
+    const pubDate = new Date(article.publishedAt);
+    const formattedDate = pubDate.toLocaleDateString('es-MX', { 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric' 
+    });
+
+    const description = article.description.length > 100 
+        ? article.description.substring(0, 100) + '...' 
+        : article.description;
+    
+    newsItem.innerHTML = `
+        <div class="news-item-image-container">
+            <img src="${imageUrl}" alt="${article.title}" class="news-item-image">
+        </div>
+        <div class="news-item-content">
+            <div class="news-item-date">${formattedDate}</div>
+            <h3>${article.title}</h3>
+            <p>${description}</p>
+            <a href="${article.url}" target="_blank">Leer más</a>
+        </div>
+    `;
+    
+    return newsItem;
+}
+
+// Cambia el nombre de la función en el event listener
+window.addEventListener('load', fetchNews);
+
+/* function fetchRSSFeed() {
     const worldNewsContainer = document.getElementById('world-news-container');
     const localNewsContainer = document.getElementById('local-news-container');
     
@@ -66,7 +139,7 @@ function fetchRSSFeed() {
             localNewsContainer.innerHTML = 'Error al cargar las noticias locales.';
             console.error('Error:', error);
         });
-}
+} */
 
 function createNewsItem(item) {
     const newsItem = document.createElement('div');
@@ -74,7 +147,7 @@ function createNewsItem(item) {
 
     let imageUrl = item.enclosure && item.enclosure.link 
         ? item.enclosure.link 
-        : getRandomStockImage(); //Si no hay imagen, usar una de stock
+        : getRandomStockImage();
     
     const isStockImage = !item.enclosure || !item.enclosure.link;
     
@@ -89,16 +162,18 @@ function createNewsItem(item) {
         ? item.description.substring(0, 100) + '...' 
         : item.description;
     
+    // Extraer la URL real de la noticia del campo 'guid'
+    const realNewsUrl = item.guid;
+    
     newsItem.innerHTML = `
         <div class="news-item-image-container">
             <img src="${imageUrl}" alt="${item.title}" class="news-item-image">
-            
         </div>
         <div class="news-item-content">
             <div class="news-item-date">${formattedDate}</div>
             <h3>${item.title}</h3>
             <p>${description}</p>
-            <a href="${item.link}" target="_blank">Leer más</a>
+            <a href="${realNewsUrl}" target="_blank">Leer más</a>
         </div>
     `;
     
